@@ -1,7 +1,13 @@
 # desafio-microsservicos
 
 ## 🚀 Projeto
-Projeto do curso de Microsserviços da [@Rocketseat](https://app.rocketseat.com.br/), feito em set/25.
+Integração entre diferentes microsserviços de um e-commerce, com mensageria e observabilidade. Projeto do curso de Microsserviços da [@Rocketseat](https://app.rocketseat.com.br/), feito em set/25.
+
+## 🛠️ Tecnologias
+- [Node.js](https://nodejs.org/en)
+- [Docker](https://www.docker.com)
+- [Postgres](https://www.postgresql.org)
+- [RabbitMQ](https://www.rabbitmq.com)
 
 ## 🗂️ Utilização
 
@@ -15,16 +21,18 @@ Projeto do curso de Microsserviços da [@Rocketseat](https://app.rocketseat.com.
 
 ```bash
   $ cd desafio-microsservicos     # change to that directory
-  $ cd app-orders                 # change to that directory
+  $ cd path-to-a-microsservice    # change to that directory
+  $ cd app-orders                 # ex
+
 ```
 
-- Terminal 1: Server:
+- Terminal 1: Server
 ```bash
-  # V1: run @ localhost:
+  # V1: run @ localhost
   $ npm install     # download dependencies
   $ npm run dev     # start the project by running the package.json script
 
-  # V2: run @ Docker:
+  # V2: run @ Docker
   $ docker build -t name-of-docker-image .    # build the image
   $ docker build -t service-orders .          # ex
   $ docker run [flags] name-of-docker-image   # run the container
@@ -32,21 +40,21 @@ Projeto do curso de Microsserviços da [@Rocketseat](https://app.rocketseat.com.
   $ ctrl + C                                  # stop the container
 ```
 
-- Terminal 2: Database:
+- Terminal 2: Database
 ```bash
   $ docker compose up         # build the image and runs the container
   $ ctrl + C                  # stop the container
   $ docker compose down       # delete the container
 ```
 
-- Terminal 3: SQL:
+- Terminal 3: SQL
 ```bash
   $ npx drizzle-kit generate  # create the .sql files based on the db schema
   $ npx drizzle-kit migrate   # execute the SQL commands from the db/migrations files
   $ npx drizzle-kit studio    # db UI (OBS: Safari browsers block access to localhost by default)
 ```
 
-- Terminal 4: RabbitMQ broker messager:
+- Terminal 4: RabbitMQ messager broker
 ```bash
   # path: root ("docker-compose.yaml" file @ root of dir)
   $ docker compose up         # build the image and runs the container

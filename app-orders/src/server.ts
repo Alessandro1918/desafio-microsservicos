@@ -10,6 +10,7 @@ import { channels } from "./broker/channels/index.ts"
 import { randomUUID } from "node:crypto"
 import { db } from "./db/client.ts"
 import { schema } from "./db/schema/index.ts"
+import { dispatchOrderCreated } from "./broker/messages/order-created.ts"
 
 const PORT = 3333
 
@@ -40,6 +41,7 @@ app.post("/orders", {
   console.log("Creating an order with amount", amount)
 
   const orderId = randomUUID()
+  const customerId = "B9176D35-7276-4255-A323-D825CAEE03B5"
 
   await db.insert(schema.orders).values({
     id: orderId,
@@ -47,7 +49,14 @@ app.post("/orders", {
     amount,
   })
 
-  channels.orders.sendToQueue("orders", Buffer.from("Hello, world!"))
+  // channels.orders.sendToQueue("orders", Buffer.from("Hello, world!"))
+  dispatchOrderCreated({
+    orderId,
+    amount,
+    customer: {
+      id: customerId,
+    },    
+  })
 
   return reply.status(201).send()
 })
