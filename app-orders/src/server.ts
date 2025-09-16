@@ -6,6 +6,7 @@ import {
   validatorCompiler,
   type ZodTypeProvider,
 } from "fastify-type-provider-zod"
+import { channels } from "./broker/channels/index.ts"
 
 const PORT = 3333
 
@@ -34,6 +35,8 @@ app.post("/orders", {
   const { amount } = request.body
 
   console.log("Creating an order with amount", amount)
+
+  channels.orders.sendToQueue("orders", Buffer.from("Hello, world!"))
 
   return reply.status(201).send()
 })

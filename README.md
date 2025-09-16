@@ -18,14 +18,13 @@ Projeto do curso de Microsserviços da [@Rocketseat](https://app.rocketseat.com.
   $ cd app-orders                 # change to that directory
 ```
 
-- Terminal 1: Run server @ localhost:
+- Terminal 1: Server:
 ```bash
+  # V1: run @ localhost:
   $ npm install     # download dependencies
   $ npm run dev     # start the project by running the package.json script
-```
 
-- Or: Terminal 1: Run server @ Docker:
-```bash
+  # V2: run @ Docker:
   $ docker build -t name-of-docker-image .    # build the image
   $ docker build -t service-orders .          # ex
   $ docker run [flags] name-of-docker-image   # run the container
@@ -44,4 +43,12 @@ Projeto do curso de Microsserviços da [@Rocketseat](https://app.rocketseat.com.
 ```bash
   $ npx drizzle-kit generate  # create the .sql files based on the db schema
   $ npx drizzle-kit migrate   # execute the SQL commands from the db/migrations files
+  $ npx drizzle-kit studio    # db UI (OBS: Safari browsers block access to localhost by default)
+```
+
+- Terminal 4: RabbitMQ broker messager:
+```bash
+  # path: root ("docker-compose.yaml" file @ root of dir)
+  $ docker compose up         # build the image and runs the container
+  # RabbitMQ UI: http://localhost:5672    user: "guest"   password: "guest"
 ```
