@@ -7,6 +7,9 @@ import {
   type ZodTypeProvider,
 } from "fastify-type-provider-zod"
 import { channels } from "./broker/channels/index.ts"
+import { randomUUID } from "node:crypto"
+import { db } from "./db/client.ts"
+import { schema } from "./db/schema/index.ts"
 
 const PORT = 3333
 
@@ -35,6 +38,14 @@ app.post("/orders", {
   const { amount } = request.body
 
   console.log("Creating an order with amount", amount)
+
+  const orderId = randomUUID()
+
+  await db.insert(schema.orders).values({
+    id: orderId,
+    customerId: "B9176D35-7276-4255-A323-D825CAEE03B5",
+    amount,
+  })
 
   channels.orders.sendToQueue("orders", Buffer.from("Hello, world!"))
 
