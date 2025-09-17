@@ -1,3 +1,5 @@
+import "@opentelemetry/auto-instrumentations-node/register"
+
 import { fastify } from "fastify"
 import { fastifyCors } from "@fastify/cors"
 import { z } from "zod"
@@ -6,11 +8,16 @@ import {
   validatorCompiler,
   type ZodTypeProvider,
 } from "fastify-type-provider-zod"
-import { channels } from "./broker/channels/index.ts"
 import { randomUUID } from "node:crypto"
 import { db } from "./db/client.ts"
 import { schema } from "./db/schema/index.ts"
+
+// import { channels } from "./broker/channels/index.ts"
 import { dispatchOrderCreated } from "./broker/messages/order-created.ts"
+
+import { trace } from "@opentelemetry/api"
+import { tracer } from './tracer/tracer.ts'
+import { setTimeout } from "node:timers/promises"
 
 const PORT = 3333
 
@@ -49,6 +56,16 @@ app.post("/orders", {
     amount,
   })
 
+  // Add data to trace:
+  trace.getActiveSpan()?.setAttribute("order_id", orderId)
+
+  // Add entire process to trace:
+  const span = tracer.startSpan("possible-problematic-process")
+  span.setAttribute("teste", "Hello World")
+  await setTimeout(250)
+  span.end()
+
+  // Send message:
   // channels.orders.sendToQueue("orders", Buffer.from("Hello, world!"))
   dispatchOrderCreated({
     orderId,

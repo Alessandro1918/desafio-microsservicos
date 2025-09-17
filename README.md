@@ -7,7 +7,8 @@ Integração entre diferentes microsserviços de um e-commerce, com mensageria e
 - [Node.js](https://nodejs.org/en)
 - [Docker](https://www.docker.com)
 - [Postgres](https://www.postgresql.org)
-- [RabbitMQ](https://www.rabbitmq.com)
+- [RabbitMQ](https://www.rabbitmq.com) (Message Broker)
+- [Jaeger](https://www.jaegertracing.io) (Tracing)
 
 ## 🗂️ Utilização
 
@@ -54,9 +55,10 @@ Integração entre diferentes microsserviços de um e-commerce, com mensageria e
   $ npx drizzle-kit studio    # db UI (OBS: Safari browsers block access to localhost by default)
 ```
 
-- Terminal 4: RabbitMQ messager broker
+- Terminal 4: Serviços top-level
 ```bash
   # path: root ("docker-compose.yaml" file @ root of dir)
   $ docker compose up         # build the image and runs the container
-  # RabbitMQ UI: http://localhost:5672    user: "guest"   password: "guest"
+  # RabbitMQ messager broker UI: http://localhost:5672    user: "guest"   password: "guest"
+  # Jaager UI: http://localhost:16686 
 ```
