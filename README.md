@@ -9,6 +9,7 @@ Integração entre diferentes microsserviços de um e-commerce, com mensageria e
 - [Postgres](https://www.postgresql.org)
 - [RabbitMQ](https://www.rabbitmq.com) (Message Broker)
 - [Jaeger](https://www.jaegertracing.io) (Tracing)
+- [Kong](https://konghq.com/products/kong-gateway) (API Gateway)
 
 ## 🗂️ Utilização
 
@@ -59,6 +60,8 @@ Integração entre diferentes microsserviços de um e-commerce, com mensageria e
 ```bash
   # path: root ("docker-compose.yaml" file @ root of dir)
   $ docker compose up         # build the image and runs the container
-  # RabbitMQ messager broker UI: http://localhost:5672    user: "guest"   password: "guest"
+
+  # RabbitMQ UI: http://localhost:5672 (user: "guest"; password: "guest")
   # Jaager UI: http://localhost:16686 
+  # Kong UI: http://localhost:8002
 ```
