@@ -3,6 +3,33 @@
 ## 🚀 Projeto
 Integração entre diferentes microsserviços de um e-commerce, com mensageria e observabilidade. Projeto do curso de Microsserviços da [@Rocketseat](https://app.rocketseat.com.br/), feito em set/25.
 
+<div align="center">
+  <img 
+    width="45%"
+    alt="drizzle"
+    title="drizzle" 
+    src="github-assets/drizzle.png"
+  />
+  <img 
+    width="45%"
+    alt="rabbitMQ"
+    title="rabbitMQ" 
+    src="github-assets/rabbitMQ.png"
+  />
+  <img 
+    width="45%"
+    alt="jaeger"
+    title="jaeger" 
+    src="github-assets/jaeger.png"
+  />
+  <img 
+    width="45%"
+    alt="kong"
+    title="kong" 
+    src="github-assets/kong.png"
+  />
+</div>
+
 ## 🛠️ Tecnologias
 - [Node.js](https://nodejs.org/en)
 - [Docker](https://www.docker.com)
