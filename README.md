@@ -62,6 +62,6 @@ Integração entre diferentes microsserviços de um e-commerce, com mensageria e
   $ docker compose up         # build the image and runs the container
 
   # RabbitMQ UI: http://localhost:5672 (user: "guest"; password: "guest")
-  # Jaager UI: http://localhost:16686 
+  # Jaeger UI: http://localhost:16686 
   # Kong UI: http://localhost:8002
 ```
