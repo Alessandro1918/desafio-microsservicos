@@ -3,12 +3,40 @@
 ## 🚀 Projeto
 Integração entre diferentes microsserviços de um e-commerce, com mensageria e observabilidade. Projeto do curso de Microsserviços da [@Rocketseat](https://app.rocketseat.com.br/), feito em set/25.
 
+<div align="center">
+  <img 
+    width="45%"
+    alt="drizzle"
+    title="drizzle" 
+    src="github-assets/drizzle.png"
+  />
+  <img 
+    width="45%"
+    alt="rabbitMQ"
+    title="rabbitMQ" 
+    src="github-assets/rabbitMQ.png"
+  />
+  <img 
+    width="45%"
+    alt="jaeger"
+    title="jaeger" 
+    src="github-assets/jaeger.png"
+  />
+  <img 
+    width="45%"
+    alt="kong"
+    title="kong" 
+    src="github-assets/kong.png"
+  />
+</div>
+
 ## 🛠️ Tecnologias
 - [Node.js](https://nodejs.org/en)
 - [Docker](https://www.docker.com)
 - [Postgres](https://www.postgresql.org)
 - [RabbitMQ](https://www.rabbitmq.com) (Message Broker)
 - [Jaeger](https://www.jaegertracing.io) (Tracing)
+- [Kong](https://konghq.com/products/kong-gateway) (API Gateway)
 
 ## 🗂️ Utilização
 
@@ -59,6 +87,8 @@ Integração entre diferentes microsserviços de um e-commerce, com mensageria e
 ```bash
   # path: root ("docker-compose.yaml" file @ root of dir)
   $ docker compose up         # build the image and runs the container
-  # RabbitMQ messager broker UI: http://localhost:5672    user: "guest"   password: "guest"
-  # Jaager UI: http://localhost:16686 
+
+  # RabbitMQ UI: http://localhost:5672 (user: "guest"; password: "guest")
+  # Jaeger UI: http://localhost:16686 
+  # Kong UI: http://localhost:8002
 ```
