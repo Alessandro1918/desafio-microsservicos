@@ -34,6 +34,7 @@ Integração entre diferentes microsserviços de um e-commerce, com mensageria e
 - [Node.js](https://nodejs.org/en)
 - [Docker](https://www.docker.com)
 - [Postgres](https://www.postgresql.org)
+- [Drizzle](https://orm.drizzle.team/) (Database ORM)
 - [RabbitMQ](https://www.rabbitmq.com) (Message Broker)
 - [Jaeger](https://www.jaegertracing.io) (Tracing)
 - [Kong](https://konghq.com/products/kong-gateway) (API Gateway)
@@ -88,7 +89,7 @@ Integração entre diferentes microsserviços de um e-commerce, com mensageria e
   # path: root ("docker-compose.yaml" file @ root of dir)
   $ docker compose up         # build the image and runs the container
 
-  # RabbitMQ UI: http://localhost:5672 (user: "guest"; password: "guest")
+  # RabbitMQ UI: http://localhost:15672 (user: "guest"; password: "guest")
   # Jaeger UI: http://localhost:16686 
   # Kong UI: http://localhost:8002
 ```

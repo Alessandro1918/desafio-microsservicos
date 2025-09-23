@@ -17,17 +17,24 @@ services:
       - "4318:4318"     # OTLP/HTTP
 
   api-gateway:
-    image: kong:3.9
+    # usage: docker compose up
+    # V1: image, KONG_DECLARATIVE_CONFIG, volumes, config.yaml: build an image under the hood, and runs the container.
+    # V2: build context, ORDERS_SERVICE_URL, config.template.yaml: build a standalone image, and runs a container with it.
+    # In V1, I can have several services running in this same docker-compose.yaml file, for development;
+    # In V2, each image should contain a single service, so it will make more sense to remove the other services from this docker-compose.yaml file.
+    # image: kong:3.9                                 # moved to Dockerfile
+    build:
+      context: './docker/kong'                        # path to Dockerfile
     environment:
       KONG_DATABASE: "off"
       KONG_ADMIN_LISTEN: "0.0.0.0:8001"
       KONG_ADMIN_GUI_URL: http://localhost:8002
-      KONG_DECLARATIVE_CONFIG: "/kong/config.yaml"    # path to config file inside container
-      # ORDERS_SERVICE_URL: http://host.docker.internal:3333  # could set this here to use inside "config.yaml" file like: "url: ${ORDERS_SERVICE_URL}"
-    extra_hosts:
+      # KONG_DECLARATIVE_CONFIG: "/kong/config.yaml"  # moved to startup.sh; path to config file inside container, as defined by "volumes" line below
+      ORDERS_SERVICE_URL: http://host.docker.internal:3333  # used by config.template.yaml when called by Dockerfile
+    extra_hosts:                                      # set my machine's localhost to Docker's localhost
       - "host.docker.internal:host-gateway"
-    volumes:
-      - "./docker/kong/config.yaml:/kong/config.yaml" # localhost -> container
+    # volumes:                                        # moved to startup.sh;
+    #   - "./docker/kong/config.yaml:/kong/config.yaml" # copy file from localhost -> container
     ports:
       - "8000:8000" # Proxy (API)
       - "8001:8001" # API (Admin)
