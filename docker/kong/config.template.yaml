@@ -3,12 +3,18 @@ _transform: true
 
 services:
   - name: orders
-    url: http://host.docker.internal:3333
-    protocol: http
-    host: host.docker.internal
-    port: 3333
-    connect_timeout: 10000  # 10s
-    retries: 3
+    # V1, with docker-compose and config.yaml:
+    # url: http://host.docker.internal:3333
+    # V2, with docker-compose building the image from Dockerfile as per config.template.yaml:
+    url: ${ORDERS_SERVICE_URL}
+    # Not needed:
+    # protocol: http
+    # host: host.docker.internal
+    # port: 3333
+    # Not used:
+    # connect_timeout: 10000  # 10s
+    # retries: 3
+    # Available paths:
     # path: /orders
     # Or:
     path: /
@@ -22,9 +28,9 @@ services:
 
   - name: invoices
     url: http://host.docker.internal:3334
-    protocol: http
-    host: host.docker.internal
-    port: 3334
+    # protocol: http
+    # host: host.docker.internal
+    # port: 3334
     path: /
     routes:
       - name: api-invoices
